@@ -1,0 +1,28 @@
+version: "3"
+
+services:
+  pihole:
+    container_name: pihole
+    image: pihole/pihole:latest
+    ports:
+      - "53:53/tcp"
+      - "53:53/udp"
+      - 18080:8080
+    dns:
+      - 127.0.0.1
+      - 9.9.9.9
+    environment:
+      TZ: ${TIMEZONE:-America/New_York}
+      WEBPASSWORD: "${PIHOLE_PASSWORD:-admin}"
+      WEB_PORT: 8080
+      VIRTUAL_HOST: "${PIHOLE_URL}"
+      PIHOLE_DNS_: 9.9.9.9;149.112.112.112;1.1.1.1
+      DNSSEC: "true"
+      FTLCONF_REPLY_ADDR4: ${HOST_IP}
+      DNSMASQ_LISTENING: all
+      WEBTHEME: default-dark
+      PIHOLE_DOMAIN: public
+    volumes:
+      - ${CONFIG_DIR}/pihole/etc:/etc/pihole
+      - ${CONFIG_DIR}/pihole/dnsmasq.d:/etc/dnsmasq.d
+    restart: unless-stopped

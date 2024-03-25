@@ -1,0 +1,24 @@
+version: "3"
+
+services:
+  postgres:
+    container_name: postgres_db
+    image: postgres:13.5
+    command: postgres -c 'max_connections=1000'
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+    volumes:
+      - ${CONFIG_DIR}/postgres/db_data:/var/lib/postgresql/data
+    ports:
+      - 5432:5432
+    restart: unless-stopped
+
+  cloudbeaver:
+    container_name: cloudbeaver
+    image: dbeaver/cloudbeaver:latest
+    ports:
+      - 8080:8978
+    volumes:
+      - ${CONFIG_DIR}/cloudbeaver/data:/opt/cloudbeaver/workspace
+    restart: unless-stopped
