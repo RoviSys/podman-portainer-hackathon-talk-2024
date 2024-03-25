@@ -1,5 +1,8 @@
 version: "3.8"
 
+volumes:
+  minecraft_data:
+
 services:
   mc:
     image: itzg/minecraft-server
@@ -10,5 +13,5 @@ services:
     environment:
       EULA: "TRUE"
     volumes:
-      - ${CONFIG_DIR}/minecraft/data:/data
+      - ${CONFIG_DIR:-/mnt/c/podmandemo}/minecraft/data:/data
     restart: unless-stopped

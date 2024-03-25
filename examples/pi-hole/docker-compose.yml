@@ -15,14 +15,14 @@ services:
       TZ: ${TIMEZONE:-America/New_York}
       WEBPASSWORD: "${PIHOLE_PASSWORD:-admin}"
       WEB_PORT: 8080
-      VIRTUAL_HOST: "${PIHOLE_URL}"
+      VIRTUAL_HOST: "${PIHOLE_URL:-localhost}"
       PIHOLE_DNS_: 9.9.9.9;149.112.112.112;1.1.1.1
       DNSSEC: "true"
-      FTLCONF_REPLY_ADDR4: ${HOST_IP}
+      FTLCONF_REPLY_ADDR4: ${HOST_IP:-localhost}
       DNSMASQ_LISTENING: all
       WEBTHEME: default-dark
       PIHOLE_DOMAIN: public
     volumes:
-      - ${CONFIG_DIR}/pihole/etc:/etc/pihole
-      - ${CONFIG_DIR}/pihole/dnsmasq.d:/etc/dnsmasq.d
+      - ${CONFIG_DIR:-/mnt/c/podmandemo}/pihole/etc:/etc/pihole
+      - ${CONFIG_DIR:-/mnt/c/podmandemo}/pihole/dnsmasq.d:/etc/dnsmasq.d
     restart: unless-stopped

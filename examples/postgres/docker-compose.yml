@@ -9,7 +9,7 @@ services:
       POSTGRES_USER: ${POSTGRES_USER}
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
     volumes:
-      - ${CONFIG_DIR}/postgres/db_data:/var/lib/postgresql/data
+      - ${CONFIG_DIR:-/mnt/c/podmandemo}/postgres/db_data:/var/lib/postgresql/data
     ports:
       - 5432:5432
     restart: unless-stopped
@@ -20,5 +20,5 @@ services:
     ports:
       - 8080:8978
     volumes:
-      - ${CONFIG_DIR}/cloudbeaver/data:/opt/cloudbeaver/workspace
+      - ${CONFIG_DIR:-/mnt/c/podmandemo}/cloudbeaver/data:/opt/cloudbeaver/workspace
     restart: unless-stopped

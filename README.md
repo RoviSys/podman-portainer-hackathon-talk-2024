@@ -1,5 +1,7 @@
 # Podman & Portainer
 
+Before getting started ensure you have created a folder called "PodmanDemo" in the root of your C: drive.
+
 ## Podman Setup
 
 1. Install Podman - https://podman-desktop.io/downloads/windows

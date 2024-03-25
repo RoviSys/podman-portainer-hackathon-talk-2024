@@ -7,7 +7,7 @@ services:
     ports:
       - 8123:8123
     volumes:
-      - ${CONFIG_DIR}/homeassistant:/config
+      - ${CONFIG_DIR:-/mnt/c/podmandemo}/homeassistant:/config
       - /etc/localtime:/etc/localtime:ro
     environment:
       - TZ=${TIMEZONE:-America/New_York}
